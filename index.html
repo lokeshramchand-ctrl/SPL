@@ -325,28 +325,19 @@
       border: 1px solid #e2e8f0;
     }
 
+   @media (max-width: 768px) {
     .founder-content {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 10rem;
-      align-items: center;
-      max-width: 1200px;
-      padding-right: 30px;
-      margin: 0 auto;
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        gap: 2rem; /* Reduce the gap for mobile */
+        padding-right: 20px; /* Adjust padding for better spacing */
+        justify-items: center; /* Center the image in the new stacked layout */
     }
 
     .founder-image {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      /* ensures image stays inside circle */
+        width: 200px;
+        height: 200px;
     }
+}
 
     .founder-image img {
       width: 100%;
