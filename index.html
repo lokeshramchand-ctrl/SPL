@@ -26,15 +26,17 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      box-sizing: border-box;
+      /* This is good practice to prevent padding issues */
     }
 
     header {
-      background: linear-gradient(135deg, #e2f1f3 60%, #05398ffa 30%); 
+      background: linear-gradient(135deg, #e2f1f3 60%, #05398ffa 30%);
       color: #ffffff;
       padding: 0rem 0;
       width: 100%;
       top: 0;
-      position:fixed;
+      position: fixed;
       z-index: 1000;
       backdrop-filter: blur(10px);
       border-bottom: 0px solid #e2e8f0;
@@ -130,7 +132,7 @@
     }
 
     .hero {
-    /*  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%); */
+      /*  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%); */
       color: #f8fafc;
       padding: 0px 0 0px;
       text-align: center;
@@ -150,7 +152,8 @@
 
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      /* Use clamp() for fluid sizing */
       font-weight: 600;
       margin-bottom: 1rem;
       letter-spacing: -0.02em;
@@ -159,7 +162,7 @@
     }
 
     .hero p {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 4vw, 1.3rem);
       margin-bottom: 2rem;
       opacity: 0.9;
       max-width: 600px;
@@ -265,6 +268,14 @@
       margin-bottom: 4rem;
     }
 
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+        /* Stack on mobile */
+        gap: 2rem;
+      }
+    }
+
     .about-text h2 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2.2rem;
@@ -325,19 +336,49 @@
       border: 1px solid #e2e8f0;
     }
 
-   @media (max-width: 768px) {
     .founder-content {
-        grid-template-columns: 1fr; /* Stack columns on smaller screens */
-        gap: 2rem; /* Reduce the gap for mobile */
-        padding-right: 20px; /* Adjust padding for better spacing */
-        justify-items: center; /* Center the image in the new stacked layout */
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      /* Default desktop layout */
+      gap: 10rem;
+      align-items: center;
+      max-width: 1200px;
+      padding-right: 30px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .founder-content {
+        grid-template-columns: 1fr;
+        /* Stack columns on smaller screens */
+        gap: 2rem;
+        /* A more reasonable gap for mobile */
+        padding: 0 20px;
+        /* Adjust padding to ensure no overflow */
+        justify-items: center;
+        /* Center the content */
+      }
+
+      .founder-image {
+        width: 150px;
+        height: 150px;
+        box-shadow: none;
+        /* Make it more mobile-friendly */
+      }
     }
 
     .founder-image {
-        width: 200px;
-        height: 200px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      /* ensures image stays inside circle */
     }
-}
 
     .founder-image img {
       width: 100%;
@@ -568,192 +609,193 @@
       transform: translateY(-2px);
     }
 
-  
-   .hamburger {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #ffffff;
-}
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #ffffff;
+    }
 
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    background-color: #05398f;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    border-radius: 8px;
-    z-index: 1001;
-  }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
 
-  .nav-links.active {
-    display: flex;
-  }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background-color: #05398f;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1001;
+      }
 
-  .nav-links li {
-    margin-bottom: 1rem;
-  }
+      .nav-links.active {
+        display: flex;
+      }
 
-  .nav-links a {
-    color: #ffffff;
-  }
-}
+      .nav-links li {
+        margin-bottom: 1rem;
+      }
 
+      .nav-links a {
+        color: #ffffff;
+      }
+    }
   </style>
 </head>
 
 <body>
   <header>
     <nav class="container">
-  <div class="logo">
-    <img src="assets/SPL_Logo.png" alt="SPL Systems Logo">
-  </div>
-  
-  <div class="hamburger" id="hamburger">
-    &#9776;
-  </div>
+      <div class="logo">
+        <img src="assets/SPL_Logo.png" alt="SPL Systems Logo">
+      </div>
 
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact Us</a></li>
-  </ul>
-</nav>
+      <div class="hamburger" id="hamburger">
+        &#9776;
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
 
   </header>
 
-<section class="hero">
-  <div class="container">
-    <!-- Carousel -->
-    <div class="carousel">
-      <img src="assets/image1-min.jpg" class="carousel-image active">
-      <img src="assets/image2-min.jpg" class="carousel-image">
-      <img src="assets/image3-min.jpg" class="carousel-image">
-      <img src="assets/image4-min.jpg" class="carousel-image">
-      <img src="assets/image5-min.jpg" class="carousel-image">
-      <img src="assets/image6-min.jpg" class="carousel-image">
+  <section class="hero">
+    <div class="container">
+      <!-- Carousel -->
+      <div class="carousel">
+        <img src="assets/image1-min.jpg" class="carousel-image active">
+        <img src="assets/image2-min.jpg" class="carousel-image">
+        <img src="assets/image3-min.jpg" class="carousel-image">
+        <img src="assets/image4-min.jpg" class="carousel-image">
+        <img src="assets/image5-min.jpg" class="carousel-image">
+        <img src="assets/image6-min.jpg" class="carousel-image">
 
-      <!-- Navigation dots -->
-      <div class="carousel-dots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-        <span class="dot" data-index="2"></span>
-        <span class="dot" data-index="3"></span>
-        <span class="dot" data-index="4"></span>
-        <span class="dot" data-index="5"></span>
+        <!-- Navigation dots -->
+        <div class="carousel-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+          <span class="dot" data-index="5"></span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  .carousel {
-    position: relative;
-    width: 100%;
-    height: 600px; /* You can adjust the height as needed */
-    overflow: hidden;
-    margin-top: 0px;
-    border-radius: 8px;
-  }
+  <style>
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      /* You can adjust the height as needed */
+      overflow: hidden;
+      margin-top: 0px;
+      border-radius: 8px;
+    }
 
-  .carousel-image {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fills the container without distortion */
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    filter: brightness(90%);
-  }
+    .carousel-image {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Fills the container without distortion */
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      filter: brightness(90%);
+    }
 
-  .carousel-image.active {
-    opacity: 1;
-    z-index: 1;
-  }
+    .carousel-image.active {
+      opacity: 1;
+      z-index: 1;
+    }
 
-  .carousel-dots {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 2;
-  }
+    .carousel-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
 
-  .carousel-dots .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+    .carousel-dots .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-  .carousel-dots .dot.active {
-    background-color: white;
-  }
-</style>
+    .carousel-dots .dot.active {
+      background-color: white;
+    }
+  </style>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-</script>
-
-
-<script>
-  const images = document.querySelectorAll('.carousel-image');
-  const dots = document.querySelectorAll('.carousel-dots .dot');
-  let current = 0;
-  let interval;
-
- function solveSimpleChallenge() {
-    // your code here
-  }
-
-  function showImage(index) {
-    images.forEach((img, i) => {
-      img.classList.toggle('active', i === index);
-      dots[i].classList.toggle('active', i === index);
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
-    current = index;
-  }
+  </script>
 
-  function nextImage() {
-    const next = (current + 1) % images.length;
-    showImage(next);
-  }
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const index = parseInt(dot.dataset.index);
-      showImage(index);
-      clearInterval(interval); // stop auto-rotation on manual click
-      autoRotate(); // restart
+  <script>
+    const images = document.querySelectorAll('.carousel-image');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    let current = 0;
+    let interval;
+
+    function solveSimpleChallenge() {
+      // your code here
+    }
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    function nextImage() {
+      const next = (current + 1) % images.length;
+      showImage(next);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index);
+        showImage(index);
+        clearInterval(interval); // stop auto-rotation on manual click
+        autoRotate(); // restart
+      });
     });
-  });
 
-  function autoRotate() {
-    interval = setInterval(nextImage, 3000);
-  }
+    function autoRotate() {
+      interval = setInterval(nextImage, 3000);
+    }
 
-  autoRotate();
-</script>
+    autoRotate();
+  </script>
 
 
   <section id="services" class="section services">
