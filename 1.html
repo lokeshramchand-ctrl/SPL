@@ -29,7 +29,7 @@
     }
 
     header {
-      background: #ffffff;
+      background: linear-gradient(135deg, #ffffff 0%, #efefef 60%, #3b82f6fa 10%); 
       color: #ffffff;
       padding: 0rem 0;
       width: 100%;
@@ -48,7 +48,7 @@
     }
 
     .nav-links a {
-      color: #1e40af;
+      color: #fcfdff;
       /* dark links */
     }
 
@@ -103,7 +103,7 @@
     }
 
     .nav-links a {
-      color: #1e40af;
+      color: #ffffff;
       text-decoration: none;
       font-weight: 400;
       transition: color 0.3s ease;
@@ -111,7 +111,7 @@
     }
 
     .nav-links a:hover {
-      color: #60a5fa;
+      color: #ffee05;
     }
 
     .nav-links a::after {
@@ -121,7 +121,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: #60a5fa;
+      background: #f70404;
       transition: width 0.3s ease;
     }
 
@@ -130,9 +130,9 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%);
+    /*  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%); */
       color: #f8fafc;
-      padding: 120px 0 80px;
+      padding: 0px 0 0px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -190,7 +190,7 @@
     }
 
     .section {
-      padding: 80px 0;
+      padding: 20px 0;
     }
 
     .section-title {
@@ -577,6 +577,7 @@
       transform: translateY(-2px);
     }
 
+  
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -646,13 +647,116 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Digital Solutions That Scale</h1>
-      <p>Expert software consultancy specializing in web development, mobile applications, and complex digital
-        examination systems for over a decade.</p>
+<section class="hero">
+  <div class="container">
+    <!-- Carousel -->
+    <div class="carousel">
+      <img src="assets/image1.png" class="carousel-image active">
+      <img src="assets/image2.png" class="carousel-image">
+      <img src="assets/image3.png" class="carousel-image">
+      <img src="assets/image4.png" class="carousel-image">
+      <img src="assets/image5.png" class="carousel-image">
+      <img src="assets/image6.png" class="carousel-image">
+
+      <!-- Navigation dots -->
+      <div class="carousel-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+        <span class="dot" data-index="5"></span>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<style>
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 600px; /* You can adjust the height as needed */
+    overflow: hidden;
+    margin-top: 0px;
+    border-radius: 8px;
+  }
+
+  .carousel-image {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the container without distortion */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    filter: brightness(90%);
+  }
+
+  .carousel-image.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .carousel-dots .dot.active {
+    background-color: white;
+  }
+</style>
+
+<script>
+  const images = document.querySelectorAll('.carousel-image');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  let current = 0;
+  let interval;
+
+  function showImage(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+    current = index;
+  }
+
+  function nextImage() {
+    const next = (current + 1) % images.length;
+    showImage(next);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.dataset.index);
+      showImage(index);
+      clearInterval(interval); // stop auto-rotation on manual click
+      autoRotate(); // restart
+    });
+  });
+
+  function autoRotate() {
+    interval = setInterval(nextImage, 3000);
+  }
+
+  autoRotate();
+</script>
+
 
   <section id="services" class="section services">
     <div class="container">
