@@ -29,7 +29,7 @@
     }
 
     header {
-      background: linear-gradient(135deg, #ffffff 0%, #efefef 60%, #3b82f6fa 10%); 
+      background: linear-gradient(135deg, #c1e1e5 60%, #05398ffa 30%); 
       color: #ffffff;
       padding: 0rem 0;
       width: 100%;
@@ -37,7 +37,7 @@
       position:fixed;
       z-index: 1000;
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 0px solid #e2e8f0;
       transition: all 0.3s ease;
     }
 
@@ -651,12 +651,12 @@
   <div class="container">
     <!-- Carousel -->
     <div class="carousel">
-      <img src="assets/image1.png" class="carousel-image active">
-      <img src="assets/image2.png" class="carousel-image">
-      <img src="assets/image3.png" class="carousel-image">
-      <img src="assets/image4.png" class="carousel-image">
-      <img src="assets/image5.png" class="carousel-image">
-      <img src="assets/image6.png" class="carousel-image">
+      <img src="assets/image1-min.jpg" class="carousel-image active">
+      <img src="assets/image2-min.jpg" class="carousel-image">
+      <img src="assets/image3-min.jpg" class="carousel-image">
+      <img src="assets/image4-min.jpg" class="carousel-image">
+      <img src="assets/image5-min.jpg" class="carousel-image">
+      <img src="assets/image6-min.jpg" class="carousel-image">
 
       <!-- Navigation dots -->
       <div class="carousel-dots">
@@ -683,7 +683,7 @@
 
   .carousel-image {
     position: absolute;
-    top: 100px;
+    top: 80px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -727,6 +727,10 @@
   const dots = document.querySelectorAll('.carousel-dots .dot');
   let current = 0;
   let interval;
+
+ function solveSimpleChallenge() {
+    // your code here
+  }
 
   function showImage(index) {
     images.forEach((img, i) => {
