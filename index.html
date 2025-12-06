@@ -131,46 +131,29 @@
       width: 100%;
     }
 
-    .hero {
-      /*  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%); */
-      color: #f8fafc;
-      padding: 0px 0 0px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .hero {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: #fff;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%2360a5fa" stop-opacity="0.1"/><stop offset="100%" stop-color="%230f172a" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="400" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="120" fill="url(%23a)"/></svg>');
-    }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
 
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      /* Use clamp() for fluid sizing */
-      font-weight: 600;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero p {
-      font-size: clamp(1rem, 4vw, 1.3rem);
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 1;
-    }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
     .cta-button {
       display: inline-block;
@@ -674,27 +657,11 @@
   </header>
 
   <section class="hero">
-    <div class="container">
-      <!-- Carousel -->
-      <div class="carousel">
-        <img src="assets/image1-min.jpg" class="carousel-image active">
-        <img src="assets/image2-min.jpg" class="carousel-image">
-        <img src="assets/image3-min.jpg" class="carousel-image">
-        <img src="assets/image4-min.jpg" class="carousel-image">
-        <img src="assets/image5-min.jpg" class="carousel-image">
-        <img src="assets/image6-min.jpg" class="carousel-image">
-
-        <!-- Navigation dots -->
-        <div class="carousel-dots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
-          <span class="dot" data-index="2"></span>
-          <span class="dot" data-index="3"></span>
-          <span class="dot" data-index="4"></span>
-          <span class="dot" data-index="5"></span>
+        <div class="container">
+            <h1>Digital Solutions That Scale</h1>
+            <p>Expert software consultancy specializing in web development, mobile applications, and complex digital examination systems for over a decade.</p>
+            <a href="#contact" class="cta-button">Start Your Project</a>
         </div>
-      </div>
-    </div>
   </section>
 
   <style>
@@ -859,7 +826,6 @@
         </div>
         <div class="about-visual">
           <div style="max-width: 100%; height: auto;">
-            <img src="assets/img_inovate.jpg" alt="Innovation" style="width: 100%; height: auto;">
           </div>
 
         </div>
